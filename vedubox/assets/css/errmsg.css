@@ -1,0 +1,24 @@
+#login_form {
+		width: 500px;
+	}
+	#login_formlabel {
+		width: 250px;
+	}
+	#login_form label.error,#login_form label.submit {
+		margin-left: 253px;
+	}
+	#sign_up {
+		width: 670px;
+	}
+	#sign_up label.error {
+		margin-left: 10px;
+		width: auto;
+		display: inline;
+	}
+	#newsletter_topics label.error {
+		display: none;
+		margin-left: 103px;
+	}
+	.S_course {
+    padding: 7px 0 0 50px;
+}

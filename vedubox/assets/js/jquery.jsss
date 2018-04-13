@@ -1,0 +1,51 @@
+$(document).ready(function() {
+    $('#sign_up').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            fname: {
+
+                validators: {
+                    notEmpty: {
+                        message: 'This is required'
+                    },
+
+                }
+            },
+            lname: {
+
+                validators: {
+                    notEmpty: {
+                        message: 'This is required'
+                    },
+					
+
+                }
+            },
+            email: {
+
+                validators: {
+                    notEmpty: {
+                        message: 'This is required'
+                    },
+
+                }
+            },
+            userrole: {
+
+                validators: {
+                    notEmpty: {
+                        message: 'This is required'
+                    },
+
+                }
+            }
+
+
+        }
+    });
+});
