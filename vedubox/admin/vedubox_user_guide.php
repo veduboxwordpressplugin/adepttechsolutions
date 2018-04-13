@@ -36,7 +36,7 @@ $textarea_text = '<?php
 				<textarea width="50%" class="form-control area" rows="18" id="comment"> <?php echo $textarea_text; ?> </textarea>
 				<h4>Step 3</h4><span>Save this file "vedubox_temp.php".</span>
 				<h4>Step 4</h4><span>Follow steps according below image.</span></br>
-				 <?php $ab  = site_url().'/wp-content/plugins/tscore/assets/user_guide.png'; ?>
+				 <?php $ab  = site_url().'/wp-content/plugins/vedubox/assets/user_guide.png'; ?>
 				 <img width="75%" src="<?php echo $ab; ?>" class="img-rounded" alt="Cinque Terre"> 
 			</div>
 		  </div>
