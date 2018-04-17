@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php
 global $wpdb;
 $table_name = 'lms_setting';
@@ -50,6 +49,7 @@ if (isset($_POST['submit'])) {
 	echo $result[0]->id;
 	echo '</pre>'; */
 ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <section class="col-lg-12 col-md-12">
    <br>   
    <div class="row">

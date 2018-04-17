@@ -1,13 +1,9 @@
+<?php
+global $wpdb;
+?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<?php
-global $wpdb;
-/* echo $ab  = site_url().'/wp-content/plugins/tscore/admin/';
-echo '               ....................             ';
-echo get_template_directory_uri(); */
-
-?>
 <section class="col-lg-12 col-md-12">
    <br>      
    <br><br>
@@ -57,5 +53,5 @@ echo get_template_directory_uri(); */
 		</div>
 		
          </div>
-     </div>
+     
 </section>

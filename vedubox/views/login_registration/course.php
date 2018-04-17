@@ -65,7 +65,7 @@ echo '</pre>'; */
 
 if($response_counter <= 0){
 	?>
-	<div class="col-md-12 col-xs-12" style="background:#8bc34a">
+	<div class="col-md-12 col-xs-12 back_">
  <div class="wrapper">
   <div class="wrapper_inner">
   <div class="t_list" style="margin-bottom: 30px;
@@ -84,9 +84,9 @@ if($response_counter <= 0){
 
 
 //http://demo.vedubox.net/API/api/packageDetail/getPackageDetailsForPackageDetailList?url=http://demo.vedubox.net
-$response_count = count($response);
+//$response_count = count($response_counter);
 //print_r($response);
-if($response_count > 0){
+if($response_counter > 0){
 $response = json_decode($response);
 $arrays1 = $response->packageDetails;
 $category = array();
@@ -107,19 +107,25 @@ if (isset($_POST['submit'])) {
 	$C_name = $_POST['S_course'];
 	
 	$execute1 = $wpdb->get_results("select * from lms_setting");
-	$api_url = $execute1[0]->url;
+	$api_url_search = $execute1[0]->url;
 	$token = $execute1[0]->token;
-	$api_full_url = $api_url.'/api/veduApi/searchCourse?token='.$token.'&str='.$C_name;
+	$api_full_url = $api_url_search.'/api/veduApi/searchCourse?token='.$token.'&str='.$C_name;
 	$Search_C_response = callAPI('GET', $api_full_url);
 		
 	$Search_C_response = json_decode($Search_C_response);
-	$Search_C_response_count = count($Search_C_response);
-	if($Search_C_response > 0){	
+	
+	
+	
+	if(array_key_exists("message",$Search_C_response)){		
+		
+	}else{
+	if($Search_C_response > 0){	 
 	$_SESSION['Search_C_response'] = $Search_C_response;	
 	$Search_course_count = 0;
 	$Search_course_count = count($Search_C_response);
 	}else{
 		$Search_C_response = array();
+	}
 	}
 }
 $total_items = count($arrays1);

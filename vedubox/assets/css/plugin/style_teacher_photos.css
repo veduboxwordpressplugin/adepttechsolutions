@@ -9,6 +9,8 @@ html,body{
   height:100%;
 }
 
+
+
 *,*:after,*:before{
   -webkit-box-sizing:border-box;
           box-sizing:border-box;
@@ -48,6 +50,16 @@ body{
   width: 100%;
     margin-top: 8%;
   padding: 0;
+}
+
+.t_list{
+
+	text-align:center;
+
+	padding:17px 0;
+	margin-bottom: 30px; 
+	color: #F44336;
+
 }
 
 .gallery{}

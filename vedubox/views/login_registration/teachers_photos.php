@@ -1,5 +1,3 @@
-<link rel='stylesheet' id='bootstrap-select-css'  href='<?php echo TSCORE_ASSETS_URL.'/css/plugin/style_teacher_photos.css'; ?>' type='text/css' media='all' />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php 
 
 function callAPI($method, $url, $data = false)
@@ -59,11 +57,10 @@ $response = json_decode($response);
 $response_counter = count($response);
 
 if($response_counter <= 1){
-	?><div class="col-md-12 col-xs-12" style="background:#8bc34a">
+	?><div class="col-md-12 col-xs-12 back_">
  <div class="wrapper">
   <div class="wrapper_inner">
-  <div class="t_list" style="margin-bottom: 30px;
-    color: #fff;"><h3> Teachers Photos</h3></div>
+  <div class="t_list" ><h3> Teachers Photos</h3></div>
 	</div>
 	<center><h3><span>Not any data come from API.Please contact to admin or check API and Token.</span></h3></center>
 	</div>
@@ -82,11 +79,12 @@ $page = empty( $_REQUEST['set'] ) ? 1 : $_REQUEST['set'];
 $limit = 8;
 $offset = ($page - 1) * $limit;
 ?><?php $newArray = array_slice($response, $offset, $limit, true); ?>
-<div class="col-md-12 col-xs-12" style="background:#8bc34a">
+<link rel='stylesheet' id='bootstrap-select-css'  href='<?php echo TSCORE_ASSETS_URL.'/css/plugin/style_teacher_photos.css'; ?>' type='text/css' media='all' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="col-md-12 col-xs-12 back_">
  <div class="wrapper">
   <div class="wrapper_inner">
-  <div class="t_list" style="margin-bottom: 30px;
-    color: #fff;"><h3> Teachers Photos</h3></div>
+  <div class="t_list"><h3> Teachers Photos</h3></div>
     <!-- Gallery -->
     <section class="gallery">
       <!-- Gallery  item Start from here -->   
