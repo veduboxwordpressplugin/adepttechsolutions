@@ -1,3 +1,5 @@
+<link rel='stylesheet' id='bootstrap-select-css'  href='<?php echo TSCORE_ASSETS_URL.'/css/plugin/style_teachers.css'; ?>' type='text/css' media='all' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php 
 
 function callAPI($method, $url, $data = false)
@@ -65,9 +67,6 @@ $offset = ($page - 1) * $limit;
 $execute1 = $wpdb->get_results("select * from lms_setting");
 $teacher_list = $execute1[0]->teacher_list;
 ?>
-<link rel='stylesheet' id='bootstrap-select-css'  href='<?php echo TSCORE_ASSETS_URL.'/css/plugin/style_teachers.css'; ?>' type='text/css' media='all' />
-<link rel='stylesheet' id='bootstrap-select-css'  href='<?php echo TSCORE_ASSETS_URL.'/css/plugin/bootstrap.min.css'; ?>' type='text/css' media='all' />
-
 <div class="col-md-12 col-xs-12 back_" >
 <div class="col-md-10 col-xs-12">
 <div class="t_list" ><h3><?php if(isset($teacher_list)){echo $teacher_list;}else{ echo "Teachers List";}?></h3></div>

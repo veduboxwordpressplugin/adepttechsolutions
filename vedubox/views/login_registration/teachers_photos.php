@@ -1,3 +1,5 @@
+<link rel='stylesheet' id='bootstrap-select-css'  href='<?php echo TSCORE_ASSETS_URL.'/css/plugin/style_teacher_photos.css'; ?>' type='text/css' media='all' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php 
 
 function callAPI($method, $url, $data = false)
@@ -79,8 +81,6 @@ $page = empty( $_REQUEST['set'] ) ? 1 : $_REQUEST['set'];
 $limit = 8;
 $offset = ($page - 1) * $limit;
 ?><?php $newArray = array_slice($response, $offset, $limit, true); ?>
-<link rel='stylesheet' id='bootstrap-select-css'  href='<?php echo TSCORE_ASSETS_URL.'/css/plugin/style_teacher_photos.css'; ?>' type='text/css' media='all' />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div class="col-md-12 col-xs-12 back_">
  <div class="wrapper">
   <div class="wrapper_inner">

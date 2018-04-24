@@ -1,9 +1,11 @@
+
+
 <?php
 
 /** Register the admin menu **/ 
  add_action('admin_menu', 'tscore2');
 	function tscore2() {
-		add_menu_page('TSCORE', 'Vedubox Info ', 'moderate_comments', 'info', 'landlord_fun', plugins_url('assets/iconplugin.png', __FILE__) , 30);
+		add_menu_page('TSCORE', 'Vedubox Info ', 'moderate_comments', 'tscore', 'landlord_fun', plugins_url('assets/iconplugin.png', __FILE__) , 30);
 	}
 //add_action('admin_menu','tscore_submenu_add_landlord');
 
@@ -20,7 +22,7 @@ VeduBox Setting Menu
 */
 add_action('admin_menu','tscore_submenu_add_tenant');
  function tscore_submenu_add_tenant(){
-	add_submenu_page('info','Tenant','Settings','manage_options','setting','tenant_fun');
+	add_submenu_page('tscore','Tenant','Settings','manage_options','tenant','tenant_fun');
 	}
 function tenant_fun(){
 	include_once(TSCORE_PLUGIN_PATH.'/admin/setting.php');
@@ -31,7 +33,7 @@ VeduBox Plugin User Guide
 */
 add_action('admin_menu','userGuide');
  function userGuide(){
-	add_submenu_page('info','Tenant','User Guide','manage_options','guide','User_Guide');
+	add_submenu_page('tscore','Tenant','User Guide','manage_options','guide','User_Guide');
 	}
 function User_Guide(){
 	include_once(TSCORE_PLUGIN_PATH.'/admin/vedubox_user_guide.php');

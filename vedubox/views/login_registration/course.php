@@ -52,18 +52,34 @@ global $wpdb;
 $execute1 = $wpdb->get_results("select * from lms_setting");
 $api_url = $execute1[0]->url;
 $token = $execute1[0]->token;
-$api_full_url = $api_url.'/API/api/packageDetail/getPackageDetailsForPackageDetailList?url=http://demo.vedubox.net';
+//http://demo.vedubox.net/api/veduApi/getPackagesByTags?token=b4a7dd1f90&tags=&packageType=1
+//http://demo.vedubox.net/API/api/packageDetail/getPackageDetailsForPackageDetailList?url=http://demo.vedubox.net
+//http://demo.vedubox.net/api/veduApi/getPackagesByTags?token=b4a7dd1f90&tags=&packageType=1
+$api_full_url = $api_url.'/api/veduApi/getPackagesByTags?token=b4a7dd1f90&tags=&packageType=1';
+//$api_full_url = $api_url.'/API/api/packageDetail/getPackageDetailsForPackageDetailList?url=http://demo.vedubox.net';
 $response = callAPI('GET', $api_full_url);
 
 
 $response1 = json_decode($response);
-$arrays1 = $response1->packageDetails;
-$response_counter = count($arrays1);
-/* echo '<pre>';
-print_r($response);
-echo '</pre>'; */
 
-if($response_counter <= 0){
+$response1_count = count($response1);
+
+/* 
+for($i = 0;$i<=$response1_count;$i++){
+	$packageDetails_count = count($response1[$i]->packageDetails);
+		if($packageDetails_count > 0){
+			echo '<pre>';
+			echo $response1[$i]->description;	
+			print_r($response1[$i]->packageDetails);	
+			echo $response1[$i]->packageDetails[0]->id;
+			echo '</pre>';
+		}
+}
+
+
+exit; */
+
+if($response1_count <= 0){
 	?>
 	<div class="col-md-12 col-xs-12 back_">
  <div class="wrapper">
@@ -86,7 +102,7 @@ if($response_counter <= 0){
 //http://demo.vedubox.net/API/api/packageDetail/getPackageDetailsForPackageDetailList?url=http://demo.vedubox.net
 //$response_count = count($response_counter);
 //print_r($response);
-if($response_counter > 0){
+/* if($response_counter > 0){
 $response = json_decode($response);
 $arrays1 = $response->packageDetails;
 $category = array();
@@ -99,7 +115,7 @@ foreach($arrays1 as $result){
 $category = array_unique($category);
 $category = array_values($category);
 $cat_count = count($category);
-}
+} */
 $Search_course_count = 0;
 $Search_C_response = array();
 $newArray = array();
@@ -128,7 +144,7 @@ if (isset($_POST['submit'])) {
 	}
 	}
 }
-$total_items = count($arrays1);
+$total_items = $response1_count;
 ?>
 <section class="pen">
 	<div class="panel top">
@@ -234,81 +250,49 @@ $course_list  = $execute1[0]->course_list ;
         <div class="container">
 		<div class"t_list" style="margin-bottom: 30px;
     color: #4CAF50;margin-top:10%"><h3><?php if(isset($course_list)){echo $course_list;}else{ echo "Course List";}?></h3></div>
-		<?php $y=0; for($a=0;$a<$cat_count;$a++){ $n=0;?>
-            <div class="row<?php echo $a; ?>">
-                <br>
-               <h2 class="headings">Top Courses in <span>"<?php echo $category[$a]; ?>"</span></h2>
-                <br>
-                <br>
-                <div id="carousel-reviews<?php echo $a; ?>" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <!--<div class="item active">-->
-						<?php $x=1;$z=1;$m=0; foreach($arrays1 as $result){?>				
-						<?php foreach($result->categoriesList as $cat ){ ?>
-								
-						<?php
-							if($category[$a] == $cat){$n++;
-							$x = ($x > 4) ? 1 : $x;	
-							if($m==0){
-								$class = 'active';
-							}else{
-								$class = '';
-							}
-							echo ($x == 1) ? '<div class="item '.$class.'">' : '';				
-						?>	
+		
+					<div class="row<?php echo $a; ?>">                
+						<br>
+                
+					   <?php 
+					   
+							for($i = 0;$i<$response1_count;$i++){
+								$packageDetails_count = count($response1[$i]->packageDetails);
+								if($packageDetails_count > 0){
+								/* echo '<pre>';
+								echo $response1[$i]->description;
+								print_r($response1[$i]->packageDetails);
+								echo $response1[$i]->packageDetails[0]->id;
+								echo '</pre>'; */
+							
+					   
+					   ?>
+                        
 						<!-- do daynimic from here start -->
                             <div class="col-md-3 col-xs-12">
                                 <div class="example-1 card">
                                     <div class="wrapper">
                                         <div class="date">
-                                            <span class="day"><?php echo $result->title; ?></span>
+                                            <span class="day"><?php echo $response1[$i]->description.'    '; echo $response1[$i]->packageDetails[0]->id; ?></span>
                                         </div>
-										<?php if($result->imgUrl == null){?>
-										<a href="http://demo.vedubox.net/public/packageDetails/<?php echo $result->id; ?>" target="_blank"><img class="media-object" src="<?php echo TSCORE_ASSETS_URL.'/images_111.jpg'; ?>" style="width:100%"></a>
+										<?php if($response1[$i]->packageDetails[0]->imgUrl == null){?>
+										<a href="http://demo.vedubox.net/public/packageDetails/<?php echo $response1[$i]->packageDetails[0]->id; ?>" target="_blank"><img class="media-object" src="<?php echo TSCORE_ASSETS_URL.'/images_111.jpg'; ?>" style="width:100%"></a>
 										<?php }else{?>
-										<a href="http://demo.vedubox.net/public/packageDetails/<?php echo $result->id; ?>"><img class="media-object" src="<?php echo $result->imgUrl; ?>"></a>
+										<a href="http://demo.vedubox.net/public/packageDetails/<?php echo $response1[$i]->packageDetails[0]->id; ?>"><img class="media-object" src="<?php echo $response1[$i]->packageDetails[0]->imgUrl; ?>"></a>
 										<?php } ?>
                                         <div class="data">
 										  <div class="content">
-										<span class="btn btn-info btn-sm c_price"><?php echo '$'.$result->amount; ?></span>
-											<span class="author"><?php echo $result->description; ?></span>			<center><a href="http://demo.vedubox.net/public/packageDetails/<?php echo $result->id; ?>" target="_blank"><button type="button" class="btn btn-info btn-sm">Get this course</button></a></center>									
+										<span class="btn btn-info btn-sm c_price"><?php echo '$'.$response1[$i]->packageDetails[0]->amount; ?></span>
+											<span class="author"><?php echo $response1[$i]->packageDetails[0]->description; ?></span>			<center><a href="http://demo.vedubox.net/public/packageDetails/<?php echo $response1[$i]->packageDetails[0]->id; ?>" target="_blank"><button type="button" class="btn btn-info btn-sm">Get this course</button></a></center>									
 										 </div>
 									 </div>
                                     </div>
                                 </div>
-                            </div>
-						<?php  
-							if($x == 4){ 
-							echo  '</div>';
-							$m=1;
-							}else{
-							 echo '';						
-							}	
-							$x++;
-							$z++;							
-						?>								
-						<?php } ?>
-						<?php } ?>
-						<?php } ?>
-							
-							
-                        </div><!-- carousel-inner -->					
-                        
-                    <?php if($n <=4){}else{?>
-                    <a class="left carousel-control" href="#carousel-reviews<?php echo $a; ?>" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-					</a>
-					<a class="right carousel-control" href="#carousel-reviews<?php echo $a; ?>" role="button" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
-					<?php } ?>
-					</div>
-                </div>
-            
-		<?php } ?>	
-		
-        </div>
-    </div>
+                            </div>	
+								<?php }} ?>
+						</div>	
+				</div>
+		</div>
 	<?php } ?>
     <!-- slider -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
